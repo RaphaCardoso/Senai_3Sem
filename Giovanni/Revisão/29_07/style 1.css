@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 500px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background: rgb(119, 181, 252);
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    border: 3px solid rgba(0, 0, 255, 0.247);
+    padding: 16px;
+    gap: 10px;
+    border-radius: 25px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+h1,
+label {
+    color: white;
+}
+
+input {
+    border: none;
+    padding: 5px;
+}
+
+.form-control {
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-control input {
+    width: 200px;
+}
+
+.form-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.button-form {
+    padding: 7px;
+    background: rgb(99, 99, 247);
+    color: white;
+    border: 1px solid white;
+    font-size: 18px;
+    width: 80%;
+}
+
+.card {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    background: rgb(119, 181, 252);
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    border: 3px solid #0000ff3f;
+    padding: 16px;
+    gap: 10px;
+    border-radius: 25px;
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+
