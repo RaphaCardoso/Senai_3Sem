@@ -1,0 +1,12 @@
+- NODE JS com Express
+
+Método POST = Criar
+
+Método GET = buscar
+
+Método PATCH / PUT = editar 
+
+Método DELETE = deletar
+
+
+- Utilizando PostMan
