@@ -1,16 +1,19 @@
+const { where } = require("sequelize");
+const User = require("../models/User");
+
 const UserController = {
     create: async (req, res) => {
 
         try {
 
-            const { nome, idade, email, senha } = req.body;
+            const { nome, email, senha } = req.body;
 
-            console.log({ nome, idade, email, senha });
+            const userCriado = await User.create({ nome, email, senha });
 
             return res.status(200).json({
-                msg: "Usuário criado com sucesso!"
+                msg: "Usuário criado com sucesso!",
+                User: userCriado
             });
-
 
         } catch (error) {
             console.error(error);
@@ -27,13 +30,21 @@ const UserController = {
             const { id } = req.params; // Usuário/atualizar/42342343
 
             // {} serve para desestruturar a forma da variável, acessando apenas algumas informações e armazenando em novas variáveis
-            const { nome, idade, email, senha } = req.body;
+            //const { nome, email, senha } = req.body;
 
-            console.log({ id });
-            console.log({ nome, idade, email, senha });
+
+            const usurioFind = await User.findByPk(id);
+
+            if (usurioFind == null) {
+                return res.status(404).json({
+                    msg: 'Usuário não encontrado'
+                })
+            };
+
+            const userAtualizado = await User.update({ nome: req.body.nome, email: req.body.email, senha: req.body.senha }, { where: { id: id } })
 
             return res.status(200).json({
-                msg: "Usuário criado com sucesso!"
+                msg: "Usuário atualizado com sucesso!"
             });
 
 
@@ -47,9 +58,12 @@ const UserController = {
 
     getAll: async (req, res) => {
         try {
+
+            const usuarios = await User.findAll();
+
             return res.status(200).json({
                 msg: "Usuários encontrados!",
-                usuario: []
+                usuarios: usuarios
             });
 
         } catch (error) {
@@ -63,9 +77,19 @@ const UserController = {
     getOne: async (req, res) => {
         try {
 
+            const id = req.params.id
+
+            const usurioFind = await User.findByPk(id);
+
+            if (usurioFind == null) {
+                return res.status(404).json({
+                    msg: 'Usuário não encontrado'
+                })
+            }
+
             return res.status(200).json({
                 msg: "Usuário encontrado com sucesso",
-                usuario: {}
+                usuario: usurioFind
             });
 
         } catch (error) {
@@ -78,6 +102,18 @@ const UserController = {
 
     delete: async (req, res) => {
         try {
+
+            const { id } = req.params;
+
+            const usurioFind = await User.findByPk(id);
+
+            if (usurioFind == null) {
+                return res.status(404).json({
+                    msg: 'Usuário não encontrado'
+                })
+            };
+
+            usurioFind.destroy();
 
             return res.status(200).json({
                 msg: "Usuário deletado com sucesso!"

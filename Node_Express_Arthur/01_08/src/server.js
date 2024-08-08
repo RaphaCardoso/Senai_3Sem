@@ -2,6 +2,9 @@ const express = require('express');
 
 // Instanciando rotas
 const router = require('./router/router');
+const sequelize = require('./config/config');
+
+const User = require('./models/User');
 
 const app = express();
 
@@ -21,8 +24,20 @@ app.get('/healthcheck', (req, res) => {
 });
 
 // Ouvindo na porta 8080
-app.listen(8080, () => {
-    console.log("###################");
-    console.log("Estamos online na http://localhost:8080");
-    console.log("###################");
+sequelize.authenticate().then(async () => {
+    console.log('Conexão estabelecida com sucesso');
+    await sequelize.sync();
+}).then(() => {
+
+    app.listen(8080, () => {
+        console.log("");
+        console.log("Estamos online na http://localhost:8080");
+        console.log("");
+    });
+
+}).catch((error) => {
+    console.error('Erro ao se conectar com o banco:', error);
 });
+
+
+// try {} catch (error)  == ao .then()

@@ -10,13 +10,11 @@ const card_delete = document.querySelector('.list-card');
 
 const lista_cadastro = document.querySelector('.list');
 
-var array = [];
 var id_list = 0;
 
 btn.addEventListener('click', (event) => {
 
     event.preventDefault();
-    lista_cadastro.innerHTML = ''
 
     //btn_Excluir.style.visibility = 'visible';
 
@@ -30,24 +28,31 @@ btn.addEventListener('click', (event) => {
 
 
     //
-    let cadastro_completo = {
-        id: id_list,
-        nome: cadastro_nome,
-        email: cadastro_email,
-        telefone: cadastro_telefone
-    };
 
-    array.push(cadastro_completo);
+    const templeteHTML = `
+             <li class="list-card" id="${id_list}">
+                 <div class="card">
+                     <h2 class="nome">${cadastro_nome}</h2>
+                     <h3 class="email">${cadastro_email}</h3>
+                     <h3 class="Telefone">${cadastro_telefone}</h3>
+                 </div>
+                 <button class="delete-button"> Excluir cadastro </button>
+             </li>
+     `;
+
+    lista_cadastro.innerHTML += templeteHTML;
 
     // carregar no html here
 
-    //carregar_html();
+    console.log();
 
     funcDeletar();
 
     limpar_campos();
     id_list++;
 });
+
+
 
 function limpar_campos() {
     nome.value = '';
@@ -65,34 +70,34 @@ async function funcDeletar() {
         btnDelete[index].addEventListener('click', (e) => {
             e.preventDefault();
 
-            const cadastro_deletado = btnDelete[index].parentElement.id;
+            btnDelete[index].parentElement.remove();
 
-            array.splice(cadastro_deletado, 1);
         });
-
-        carregar_html();
     };
+
 };
 
-function carregar_html() {
-    for (let index = 0; index < array.length; index++) {
-        const cadastro_salvo = array[index];
+// function carregar_html() {
 
-        const templeteHTML = `
-             <li class="list-card" id="${cadastro_salvo.id}">
-                 <div class="card">
-                     <h2 class="nome">${cadastro_salvo.nome}</h2>
-                     <h3 class="email">${cadastro_salvo.email}</h3>
-                     <h3 class="Telefone">${cadastro_salvo.telefone}</h3>
-                 </div>
-                 <button class="delete-button"> Excluir cadastro </button>
-             </li>
-     `;
+//     lista_cadastro.innerHTML = '';
 
-        lista_cadastro.innerHTML += templeteHTML;
-    };
+//     for (let index = 0; index < array.length; index++) {
+//         const cadastro_salvo = array[index];
 
-}
+//         const templeteHTML = `
+//              <li class="list-card" id="${cadastro_salvo.id}">
+//                  <div class="card">
+//                      <h2 class="nome">${cadastro_salvo.nome}</h2>
+//                      <h3 class="email">${cadastro_salvo.email}</h3>
+//                      <h3 class="Telefone">${cadastro_salvo.telefone}</h3>
+//                  </div>
+//                  <button class="delete-button"> Excluir cadastro </button>
+//              </li>
+//      `;
+
+//         lista_cadastro.innerHTML += templeteHTML;
+//     };
+// }
 
 /*btn_Excluir.addEventListener('click', (e) => {
 
