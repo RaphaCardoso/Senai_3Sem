@@ -3,3 +3,74 @@
     margin: 0 auto;
     padding: 0;
 }
+
+body {
+    color: aliceblue;
+    background-color: rgb(9, 2, 25);
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+}
+
+.container {
+    background-color: #321a69;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    border: 3px solid rgb(133, 91, 230);
+    border-radius: 20px;
+    box-shadow: rgba(130, 26, 178, 0.56) 2px 10px 50px 10px;
+}
+
+input {
+    font-family: sans-serif;
+    color: aliceblue;
+    padding: 10px;
+    margin-right: 5px;
+    background-color: #321a69;
+    border: 0 none;
+    outline: 0;
+}
+
+.button-salvar {
+    border: 3px solid rgb(133, 91, 230);
+    background-color: #321a69;
+    color: rgb(187, 116, 253);
+    box-shadow: rgba(234, 0, 255, 0.25) 0px 30px 60px -12px inset, rgba(68, 6, 255, 0.3) 0px 18px 36px -18px inset;
+    padding: 5px;
+    font-size: larger;
+    margin: 10px;
+}
+
+
+.list {
+    margin-top: 20px;
+    text-decoration: none;
+    list-style-type: none;
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.list-card {
+    box-shadow: rgba(234, 0, 255, 0.25) 0px 30px 60px -12px inset, rgba(68, 6, 255, 0.3) 0px 18px 36px -18px inset;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.list button {
+    border: 3px solid rgb(133, 91, 230);
+    background-color: #321a69;
+    color: rgb(187, 116, 253);
+    box-shadow: rgba(234, 0, 255, 0.25) 0px 30px 60px -12px inset, rgba(68, 6, 255, 0.3) 0px 18px 36px -18px inset;
+    padding: 5px;
+    font-size: larger;
+    margin: 10px;
+}
