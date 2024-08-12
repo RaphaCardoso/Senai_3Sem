@@ -1,0 +1,30 @@
+Instalação para React
+
+visitar => vite react
+
+$ npm create vite@latest
+
+- criar pasta 
+
+colar o comando
+
+-> fazer configurações
+
+-> entrar na pasta raiz
+
+-> npm install par instalar dependências node
+
+-> npm run dev para inicializar a aplicação
+
+-> apagar da linha 11 até a 30
+
+-> import './App.css' apagar este import nos arquivos
+
+-> apagamos os arquivos.css
+
+-> mudar coisas no index.html
+
+-> codar dentro do App.jsx
+
+-> criar pasta 'componentes dentro do src ==> colocar componentes nessa pasta como por ex header, footer, card .jsx
+
