@@ -294,3 +294,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+********************
+explicação de stack e widget
