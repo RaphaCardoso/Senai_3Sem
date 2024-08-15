@@ -2,24 +2,20 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
 
 // fazendo um objeto user para armazenar informações
-const User = sequelize.define('user', {
+const Product = sequelize.define('product', {
 
-    // tipo string não nulo
     nome: {
         type: DataTypes.STRING,
         allowNull: false
     },
-
-    email: {
-        type: DataTypes.STRING,
+    preco: {
+        type: DataTypes.DOUBLE,
         allowNull: false
     },
-
-    senha: {
-        type: DataTypes.STRING,
-        allowNull: false
+    quantidade: {
+        type: DataTypes.INTEGER
     }
 
 });
 
-module.exports = User;
+module.exports = Product;

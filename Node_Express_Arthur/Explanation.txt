@@ -18,3 +18,11 @@ Método DELETE = deletar
 
 - Utilizando PostMan
 
+
+*********************************
+
+-> Router 
+
+-> Config = para configurar o banco de dados sql
+
+

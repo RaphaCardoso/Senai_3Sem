@@ -6,6 +6,7 @@ const UserController = {
 
         try {
 
+            // desestruturando o body e criando var para cada
             const { nome, email, senha } = req.body;
 
             const userCriado = await User.create({ nome, email, senha });
@@ -29,9 +30,10 @@ const UserController = {
 
             const { id } = req.params; // Usuário/atualizar/42342343
 
+            const { nome, email, senha } = req.body
+
             // {} serve para desestruturar a forma da variável, acessando apenas algumas informações e armazenando em novas variáveis
             //const { nome, email, senha } = req.body;
-
 
             const usurioFind = await User.findByPk(id);
 
@@ -41,11 +43,19 @@ const UserController = {
                 })
             };
 
-            const userAtualizado = await User.update({ nome: req.body.nome, email: req.body.email, senha: req.body.senha }, { where: { id: id } })
+            const userAtualizado = await User.update({ nome: nome, email: email, senha: senha }, { where: { id: id } });
 
-            return res.status(200).json({
-                msg: "Usuário atualizado com sucesso!"
+            if (userAtualizado) {
+                return res.status(200).json({
+                    msg: "Usuário atualizado com sucesso!"
+                });
+            };
+
+            return res.status(500).json({
+                msg: "Erro ao Atualizar usuário!"
             });
+
+
 
 
         } catch (error) {
@@ -77,8 +87,9 @@ const UserController = {
     getOne: async (req, res) => {
         try {
 
-            const id = req.params.id
-
+            const { id } = req.params;
+            // Primary key
+            // SELECT * FROM User id = { id }
             const usurioFind = await User.findByPk(id);
 
             if (usurioFind == null) {
@@ -105,15 +116,15 @@ const UserController = {
 
             const { id } = req.params;
 
-            const usurioFind = await User.findByPk(id);
+            const usurioFinded = await User.findByPk(id);
 
-            if (usurioFind == null) {
+            if (usurioFinded == null) {
                 return res.status(404).json({
                     msg: 'Usuário não encontrado'
                 })
             };
 
-            usurioFind.destroy();
+            usurioFinded.destroy();
 
             return res.status(200).json({
                 msg: "Usuário deletado com sucesso!"
