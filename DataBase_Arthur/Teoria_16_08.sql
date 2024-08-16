@@ -41,4 +41,18 @@ SELECT MAX(quantidade) FROM produtos; -- Máximo
 SELECT CONCAT(nome, idade) FROM clientes; -- concatenar
 SELECT LOWER(nome) FROM clientes; -- deixar tudo minusculo
 SELECT UPPER(nome) FROM clientes; -- deixar tudo maisculo
-SELECT SUBSTRING(nome, 5, 10) FROM clientes; -- cortar palavra, inicio e fim
+SELECT SUBSTRING(nome, 2, 5) FROM clientes; -- cortar palavra, inicio e fim
+
+-- Função de Data e Hora
+SELECT NOW(); -- retorna a data e hora atual
+SELECT CURDATE(); -- Retorna a data atual
+SELECT CURTIME(); -- Retorna a hora atual
+
+-- Funções Matemáticas 
+SELECT ABS (-534.25); -- Retorne um valor absoluto 
+SELECT CEIL (43.65); -- Arredonda para um num inteiro pra cima
+SELECT CEILING(43.65); -- Arredonda para um num inteiro  pra cima
+SELECT FLOOR(45.97); -- Arredonda para um num inteiro para baixo
+SELECT ROUND(45.44, 0); -- Arredondar com base na casas decimais
+SELECT SQRT(26); -- Raiz quadrada
+
