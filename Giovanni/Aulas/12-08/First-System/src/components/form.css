@@ -1,0 +1,44 @@
+.containerForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
+    color: aliceblue;
+    display: flex;
+    align-items: center;
+    width: 260px;
+    height: 50px;
+    padding: 20px;
+    justify-content: flex-end;
+    gap: 10px;
+    background-color: rgb(39, 19, 58);
+    border-radius: 20px;
+    border: 1px solid blueviolet;
+    margin-bottom: 10px;
+}
+
+.containerForm input {
+    max-width: 200px;
+    padding: 6px;
+    color: aliceblue;
+    font-size: 15PX;
+    border: none;
+    outline: 1px solid blueviolet;
+}
+
+.containerForm label {
+    background-color: rgb(39, 19, 58);
+}
+
+.containerForm button {
+    color: aliceblue;
+    background-color: rgb(39, 19, 58);
+    border: solid 2px blueviolet;
+    max-width: 70px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 15px;
+}

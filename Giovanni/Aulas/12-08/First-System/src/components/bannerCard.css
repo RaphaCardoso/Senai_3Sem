@@ -1,0 +1,22 @@
+.banner-card {
+    border: 1px solid bisque;
+    margin: auto;
+    max-width: 1000px;
+    height: 110px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-card h1 {
+    color: aliceblue;
+    font-size: 18px;
+}
+
+.banner-card h2 {
+    color: antiquewhite;
+    font-size: 16px;
+}

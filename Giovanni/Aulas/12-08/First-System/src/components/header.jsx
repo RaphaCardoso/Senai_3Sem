@@ -5,8 +5,8 @@ const Header = () => {
 
         backgroundColor: "blueviolet",
         padding: "20px",
+        borderBottom: "3px solid bisque",
         textAlign: "center",
-        border: "3px solid violet",
         display: "Flex",
         alignContent: "Center",
         justifyContent: "Center",
@@ -17,7 +17,7 @@ const Header = () => {
 
         margin: 0,
         fontSize: "30px",
-        color: "aliceBlue",
+        color: "aliceblue",
         backgroundColor: "blueviolet"
 
     }

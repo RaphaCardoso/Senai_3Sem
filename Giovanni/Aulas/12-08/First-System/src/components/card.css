@@ -28,3 +28,8 @@
     color: blueviolet;
     padding-bottom: 10px;
 }
+
+.card a {
+    text-decoration: none;
+    color: bisque;
+}
