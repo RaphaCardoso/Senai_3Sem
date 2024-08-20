@@ -1,5 +1,8 @@
-import 'package:app_001/view/dashboard.dart';
+// import 'package:app_001/view/dashboard.dart';
 // import 'package:app_001/view/firstpage.dart';
+
+import 'package:app_001/view/categories.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +21,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: const Dashboard(),
+      // home: const Dashboard(),
+      home: const Categories(),
     );
   }
 }

@@ -1,0 +1,2 @@
+
+// receber categories
