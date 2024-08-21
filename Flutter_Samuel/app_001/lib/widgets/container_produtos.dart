@@ -15,7 +15,7 @@ class widgetProduto extends StatelessWidget {
         Container(
           height: 350,
           width: 200,
-          margin: EdgeInsets.all(5),
+          margin: const EdgeInsets.all(5),
           decoration: BoxDecoration(
             border: Border.all(
               color: const Color.fromARGB(78, 71, 75, 70),
