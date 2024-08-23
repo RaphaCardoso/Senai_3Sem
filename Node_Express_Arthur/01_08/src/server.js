@@ -12,6 +12,8 @@ const User = require('./models/User');
 
 const Product = require('./models/Product');
 
+const Client = require('./models/Client');
+
 // decalarando o servidor express
 const app = express();
 
