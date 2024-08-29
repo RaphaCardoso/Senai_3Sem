@@ -1,6 +1,6 @@
 -- Comentário em BANCO DE DADOS
 -- Criar novo arquivo -> CTRL + T
--- CTRL + SHIFT + ENTER -> Execute o código
+-- CTRL + SHIFT + ENTER -> Execute o códigoclientes
 
 -- Criar Usuário
 CREATE USER 'novoUser'@'localhost

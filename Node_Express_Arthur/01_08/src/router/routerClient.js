@@ -8,23 +8,23 @@ const { validateClient } = require("../middleware/validateClient");
 
 const { validateAmbienteId } = require("../middleware/validateId");
 
-router.post('/Client', validateClient, (req, res) => {
+router.post('', validateClient, (req, res) => {
     ClientController.create(req, res);
 });
 
-router.get('/Client', (req, res) => {
+router.get('', (req, res) => {
     ClientController.getAll(req, res);
 });
 
-router.get('/Client/:id', validateAmbienteId, (req, res) => {
+router.get('/:id', validateAmbienteId, (req, res) => {
     ClientController.getOne(req, res);
 });
 
-router.put('/Client/:id', validateAmbienteId, validateClient, (req, res) => {
+router.put('/:id', validateAmbienteId, validateClient, (req, res) => {
     ClientController.update(req, res);
 });
 
-router.delete('/Client/:id', validateAmbienteId, (req, res) => {
+router.delete('/:id', validateAmbienteId, (req, res) => {
     ClientController.delete(req, res);
 });
 

@@ -1,7 +1,44 @@
 const { where } = require("sequelize");
 const User = require("../models/User");
+const bcrypt = require('bcryptjs');
 
 const UserController = {
+
+    login: async (req, res) => {
+
+        try {
+
+            const { email, senha } = req.body;
+
+            const user = await User.findOne({ where: { email } });
+
+            if (!user) {
+                return res.status(400).json({
+                    msg: 'Email ou senha incorretos!'
+                });
+            };
+
+            const isValid = await bcrypt.compare(senha, user.senha);
+
+            if (!isValid) {
+                return res.status(400).json({
+                    msg: 'Email ou senha incorretos!'
+                })
+            };
+
+            const token = jwt.sign({ email: user.email, nome: user.nome }, process.env.SECRET, { expirationIn: '1h' });
+
+            return res.status(200).json({
+                msg: 'Login realizado com sucesso!',
+                token
+            });
+
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ msg: "Acione o Suporte" });
+        }
+    },
+
     create: async (req, res) => {
 
         try {
@@ -9,7 +46,9 @@ const UserController = {
             // desestruturando o body e criando var para cada
             const { nome, email, senha } = req.body;
 
-            const userCriado = await User.create({ nome, email, senha });
+            const hashSenha = await bcrypt.hash(senha, 10);
+
+            const userCriado = await User.create({ nome, email, senha: hashSenha });
 
             return res.status(200).json({
                 msg: "Usuário criado com sucesso!",

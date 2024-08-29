@@ -1,6 +1,9 @@
 // servidor js 
 const express = require('express');
 
+// 
+require('dotenv').config();
+
 // Instanciando rotas, gerenciador de rotas
 const router = require('./router/router');
 
@@ -43,7 +46,7 @@ sequelize.authenticate().then(async () => {
 }).then(() => {
 
     // .ther() é igual a 'se estiver funcionando faça'
-    app.listen(8080, () => {
+    app.listen(process.env.PORT == null ? 8080 : process.env.PORT, () => {
         console.log("");
         console.log("Estamos online na http://localhost:8080");
         console.log("");

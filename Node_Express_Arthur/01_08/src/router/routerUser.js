@@ -11,26 +11,26 @@ const { validateAmbienteId } = require("../middleware/validateId");
 // Configurações de Rota CRUD user
 
 // obj
-router.post('/User', validateUser, (req, res) => {
+router.post('', validateUser, (req, res) => {
     UserController.create(req, res)
 });
 
-router.get('/User', (req, res) => {
+router.get('', (req, res) => {
     UserController.getAll(req, res)
 });
 
 // /api/users/:id = /api/users/12 ( params ) 
 // /api/users?id=12 -> ( Query ) sistema de busca pesquisa /* /api/search?=Arthur%Rosa -> ( Query ) */
 // { body: { id: '12'} } -> { Body } para criar e atualizar
-router.get('/User/:id', validateAmbienteId, (req, res) => {
+router.get('/:id', validateAmbienteId, (req, res) => {
     UserController.getOne(req, res)
 });
 
-router.put('/User/:id', validateAmbienteId, validateUser, (req, res) => {
+router.put('/:id', validateAmbienteId, validateUser, (req, res) => {
     UserController.update(req, res)
 });
 
-router.delete('/User/:id', validateAmbienteId, (req, res) => {
+router.delete('/:id', validateAmbienteId, (req, res) => {
     UserController.delete(req, res)
 });
 
