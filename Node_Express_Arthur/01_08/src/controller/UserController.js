@@ -1,6 +1,7 @@
 const { where } = require("sequelize");
 const User = require("../models/User");
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const UserController = {
 
@@ -26,7 +27,7 @@ const UserController = {
                 })
             };
 
-            const token = jwt.sign({ email: user.email, nome: user.nome }, process.env.SECRET, { expirationIn: '1h' });
+            const token = jwt.sign({ email: user.email, nome: user.nome }, process.env.SECRET, { expiresIn: '1h' });
 
             return res.status(200).json({
                 msg: 'Login realizado com sucesso!',

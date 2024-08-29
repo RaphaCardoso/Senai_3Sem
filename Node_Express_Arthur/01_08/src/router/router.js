@@ -3,9 +3,9 @@ const { Router } = require("express");
 
 const userRoutes = require("../router/routerUser");
 const routerProducts = require("../router/routerProduct");
-const routerClient = require('../router/routerClient')
-const UserController = require('../controller/UserController')
-const authenticateToken = require('../middleware/authenticateToken')
+const routerClient = require('../router/routerClient');
+const UserController = require('../controller/UserController');
+const authenticateToken = require('../middleware/authenticateToken');
 
 // roteamento
 const router = Router();

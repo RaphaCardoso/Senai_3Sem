@@ -23,7 +23,7 @@ const app = express();
 // Modelo da API JSON
 app.use(express.json());
 
-// Caminho para api do User
+// Caminho para api
 app.use('/api', router);
 
 // Serve para verificar se o server está vivo
