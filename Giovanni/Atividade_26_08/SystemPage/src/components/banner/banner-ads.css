@@ -1,0 +1,22 @@
+.publi {
+    object-fit: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.publi img {
+    width: 500px;
+}
+
+.publi p {
+    position: relative;
+    right: 130px;
+    top:120px;
+    font-size: 20px;
+    font-weight: bold;
+    color: goldenrod;
+    background-color: rgba(0, 0, 0, 0.493);
+    padding: 8px;
+}
