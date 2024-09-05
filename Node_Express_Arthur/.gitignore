@@ -160,4 +160,6 @@ distância
 .história
 .ionídeo
 
+node_modules
+
 # Fim de https://www.toptal.com/developers/gitignore/api/node,visualstudiocode
