@@ -27,51 +27,50 @@ class MyFirstApp extends StatelessWidget {
             children: [
               Container(
                 width: 450,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black,
-                    style: BorderStyle.solid,
-                    width: 2,
-                  ),
-                ),
                 child: Column(
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
+                        Column(
                           children: [
                             Text('Gênero:'),
                           ],
                         ),
                         Column(
                           children: [
-                            CheckboxExample(),
-                            CheckboxExample(),
+                            Row(
+                              children: [
+                                CheckboxExample(),
+                                Text('Masculino'),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                CheckboxExample(),
+                                Text(
+                                  'Feminino  ',
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                         Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text('Masculino'),
-                            Text('Feminino'),
-                          ],
-                        )
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                          child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.grey,
-                              foregroundColor: Colors.white,
-                              padding: EdgeInsets.all(15),
-                              textStyle: TextStyle(fontSize: 18),
+                            Container(
+                              child: TextButton(
+                                style: TextButton.styleFrom(
+                                  backgroundColor: Colors.grey,
+                                  foregroundColor: Colors.white,
+                                  padding: EdgeInsets.all(15),
+                                  textStyle: TextStyle(fontSize: 18),
+                                ),
+                                onPressed: () {},
+                                child: Text('Salvar'),
+                              ),
                             ),
-                            onPressed: () {},
-                            child: Text('Salvar'),
-                          ),
+                          ],
                         ),
                       ],
                     ),
@@ -110,7 +109,7 @@ class _CheckboxExampleState extends State<CheckboxExample> {
     }
 
     return Checkbox(
-      checkColor: const Color.fromARGB(255, 0, 255, 21),
+      checkColor: const Color.fromARGB(255, 9, 121, 20),
       fillColor: MaterialStateProperty.resolveWith(getColor),
       value: isChecked,
       onChanged: (bool? value) {
