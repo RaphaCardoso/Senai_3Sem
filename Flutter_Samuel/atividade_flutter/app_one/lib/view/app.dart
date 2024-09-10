@@ -36,20 +36,18 @@ class _MyFirstAppState extends State<MyFirstApp> {
 
   List<UserModel> users = [];
 
-  bool _onSave() {
+  Object _onSave() {
     if (_nomeController.text.isEmpty ||
         _emailController.text.isEmpty ||
         _enderecoController.text.isEmpty ||
         _telefoneController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Campos Vazios inválidos!'),
       ));
-      return false;
     } else if (!_emailController.text.contains('@')) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Campo email inválido!'),
       ));
-      return false;
     }
 
     users.add(UserModel(
@@ -60,7 +58,9 @@ class _MyFirstAppState extends State<MyFirstApp> {
       endereco: _enderecoController.text,
     ));
 
-    return true;
+    return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('User Salvo com sucesso!'),
+    ));
   }
 
   void _clear() {
@@ -166,8 +166,7 @@ class _MyFirstAppState extends State<MyFirstApp> {
           ElevatedButton(
             style: ButtonStyle(),
             onPressed: () {
-              bool situation = _onSave();
-              if (users.isNotEmpty && situation) {
+              if (users.isNotEmpty) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => ShowUsersScreen(
