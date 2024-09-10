@@ -1,3 +1,5 @@
+import 'package:app_one/models/user_model.dart';
+import 'package:app_one/view/ShowUsersScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_one/widgets/container_input.dart';
 
@@ -11,13 +13,11 @@ class MyFirstApp extends StatefulWidget {
 
 class _MyFirstAppState extends State<MyFirstApp> {
   int? _selectedGenderIndex;
-
   // Criar controladores para cada campo de entrada
-  final TextEditingController _nomeController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _telefoneController = TextEditingController();
-  final TextEditingController _cpfController = TextEditingController();
-  final TextEditingController _descricaoController = TextEditingController();
+  TextEditingController _nomeController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _telefoneController = TextEditingController();
+  TextEditingController _enderecoController = TextEditingController();
 
   var gender = '';
 
@@ -34,25 +34,40 @@ class _MyFirstAppState extends State<MyFirstApp> {
     });
   }
 
-  void _onSave() {
-    final String nome = _nomeController.text;
-    final String email = _emailController.text;
-    final String telefone = _telefoneController.text;
-    final String cpf = _cpfController.text;
-    final String genero = gender;
-    final String descricao = _descricaoController.text;
+  List<UserModel> users = [];
 
-    var formulario = {
-      'Nome: $nome',
-      'Email: $email',
-      'Telefone: $telefone',
-      'CPF: $cpf',
-      'Gênero: $genero',
-      'Descrição: $descricao'
-    };
+  bool _onSave() {
+    if (_nomeController.text.isEmpty ||
+        _emailController.text.isEmpty ||
+        _enderecoController.text.isEmpty ||
+        _telefoneController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Campos Vazios inválidos!'),
+      ));
+      return false;
+    } else if (!_emailController.text.contains('@')) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Campo email inválido!'),
+      ));
+      return false;
+    }
 
-    // ignore: avoid_print
-    print(formulario);
+    users.add(UserModel(
+      name: _nomeController.text,
+      email: _emailController.text,
+      telefone: _telefoneController.text,
+      gender: gender,
+      endereco: _enderecoController.text,
+    ));
+
+    return true;
+  }
+
+  void _clear() {
+    _nomeController.clear();
+    _emailController.clear();
+    _telefoneController.clear();
+    _enderecoController.clear();
   }
 
   @override
@@ -83,15 +98,15 @@ class _MyFirstAppState extends State<MyFirstApp> {
             controller: _telefoneController,
           ),
           WidgetInput(
-            inputName: 'CPF',
-            inputDica: 'Digite seu CPF...',
-            controller: _cpfController,
+            inputName: 'Endereço',
+            inputDica: 'Digite seu endereço...',
+            controller: _enderecoController,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: 450,
+                width: 340,
                 child: Column(
                   children: [
                     Row(
@@ -148,11 +163,28 @@ class _MyFirstAppState extends State<MyFirstApp> {
               ),
             ],
           ),
-          WidgetInput(
-            inputName: 'Descrição',
-            inputDica: 'Digite a Descrição...',
-            controller: _descricaoController,
-          ),
+          ElevatedButton(
+            style: ButtonStyle(),
+            onPressed: () {
+              bool situation = _onSave();
+              if (users.isNotEmpty && situation) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => ShowUsersScreen(
+                      users: users,
+                    ),
+                  ),
+                );
+              } else {
+                const snackBar = SnackBar(
+                  content: Text('Precisa cadastrar pelo menos 1 usuário!'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              }
+              _clear();
+            },
+            child: Text('Mostrar'),
+          )
         ],
       ),
     );
@@ -198,3 +230,9 @@ class CheckboxExample extends StatelessWidget {
     );
   }
 }
+
+
+// Validações
+// Campo genero ser reiniciado
+// estilo da outra página e deixar rolável
+// arrumar botão salvar e mostrar
