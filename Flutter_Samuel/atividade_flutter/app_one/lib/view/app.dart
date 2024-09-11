@@ -21,6 +21,8 @@ class _MyFirstAppState extends State<MyFirstApp> {
 
   var gender = '';
 
+  var cleanCheckbox = 3;
+
   void _clear(cleanCheckbox) {
     _nomeController.clear();
     _emailController.clear();
@@ -42,18 +44,7 @@ class _MyFirstAppState extends State<MyFirstApp> {
     );
   }
 
-  List<UserModel> users = [];
-
-  Object _onSave() {
-    // ignore: unused_local_variable
-    var cleanCheckbox = 3;
-
-    if (gender == 'masculino') {
-      cleanCheckbox = 0;
-    } else {
-      cleanCheckbox = 1;
-    }
-
+  Object _checkValidation() {
     if (_nomeController.text.isEmpty ||
         _emailController.text.isEmpty ||
         _enderecoController.text.isEmpty ||
@@ -62,26 +53,60 @@ class _MyFirstAppState extends State<MyFirstApp> {
       return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Campos Vazios inválidos!'),
       ));
-    } else if (!_emailController.text.contains('@')) {
+    }
+
+    if (!_emailController.text.contains('@')) {
       _clear(cleanCheckbox);
       return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Campo email inválido!'),
       ));
     }
 
-    users.add(UserModel(
-      name: _nomeController.text,
-      email: _emailController.text,
-      telefone: _telefoneController.text,
-      gender: gender,
-      endereco: _enderecoController.text,
-    ));
+    if (_nomeController.text.length < 2 ||
+        _emailController.text.length < 5 ||
+        _telefoneController.text.length < 9 ||
+        _enderecoController.text.length < 3) {
+      _clear(cleanCheckbox);
+      return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Campos com mínimo de caracteres não atingido!'),
+      ));
+    }
 
-    _clear(cleanCheckbox);
+    return true;
+  }
 
-    return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('User Salvo com sucesso!'),
-    ));
+  List<UserModel> users = [];
+
+  Object _onSave() {
+    // ignore: unused_local_variable
+
+    if (gender == 'masculino') {
+      cleanCheckbox = 0;
+    } else {
+      cleanCheckbox = 1;
+    }
+
+    // ignore: unused_local_variable
+    var isValid = _checkValidation();
+
+    if (isValid == true) {
+      users.add(UserModel(
+        name: _nomeController.text,
+        email: _emailController.text,
+        telefone: _telefoneController.text,
+        gender: gender,
+        endereco: _enderecoController.text,
+      ));
+
+      _clear(cleanCheckbox);
+
+      return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('User Salvo com sucesso!'),
+      ));
+    }
+
+    return ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('ERRO : Contate o Suporte')));
   }
 
   @override
