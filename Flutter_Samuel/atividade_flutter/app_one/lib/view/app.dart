@@ -14,38 +14,57 @@ class MyFirstApp extends StatefulWidget {
 class _MyFirstAppState extends State<MyFirstApp> {
   int? _selectedGenderIndex;
   // Criar controladores para cada campo de entrada
-  TextEditingController _nomeController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _telefoneController = TextEditingController();
-  TextEditingController _enderecoController = TextEditingController();
+  final TextEditingController _nomeController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _telefoneController = TextEditingController();
+  final TextEditingController _enderecoController = TextEditingController();
 
   var gender = '';
 
-  void _onGenderChanged(int index) {
-    setState(() {
-      _selectedGenderIndex = index;
+  void _clear(cleanCheckbox) {
+    _nomeController.clear();
+    _emailController.clear();
+    _telefoneController.clear();
+    _enderecoController.clear();
+    _onGenderChanged(cleanCheckbox);
+  }
 
-      if (index == 0) {
-        gender = 'masculino';
-// ignore: curly_braces_in_flow_control_structures
-      } else
-        // ignore: curly_braces_in_flow_control_structures
-        (gender = 'feminino');
-    });
+  void _onGenderChanged(int index) {
+    setState(
+      () {
+        if (_selectedGenderIndex == index) {
+          _selectedGenderIndex = null;
+        } else {
+          _selectedGenderIndex = index;
+          gender = index == 0 ? 'masculino' : 'feminino';
+        }
+      },
+    );
   }
 
   List<UserModel> users = [];
 
   Object _onSave() {
+    // ignore: unused_local_variable
+    var cleanCheckbox = 3;
+
+    if (gender == 'masculino') {
+      cleanCheckbox = 0;
+    } else {
+      cleanCheckbox = 1;
+    }
+
     if (_nomeController.text.isEmpty ||
         _emailController.text.isEmpty ||
         _enderecoController.text.isEmpty ||
         _telefoneController.text.isEmpty) {
-      return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      _clear(cleanCheckbox);
+      return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Campos Vazios inválidos!'),
       ));
     } else if (!_emailController.text.contains('@')) {
-      return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      _clear(cleanCheckbox);
+      return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Campo email inválido!'),
       ));
     }
@@ -58,16 +77,11 @@ class _MyFirstAppState extends State<MyFirstApp> {
       endereco: _enderecoController.text,
     ));
 
-    return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    _clear(cleanCheckbox);
+
+    return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('User Salvo com sucesso!'),
     ));
-  }
-
-  void _clear() {
-    _nomeController.clear();
-    _emailController.clear();
-    _telefoneController.clear();
-    _enderecoController.clear();
   }
 
   @override
@@ -78,113 +92,113 @@ class _MyFirstAppState extends State<MyFirstApp> {
           child: Text("Cadastro"),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          WidgetInput(
-            inputName: 'Nome',
-            inputDica: 'Digite seu nome...',
-            controller: _nomeController,
-          ),
-          WidgetInput(
-            inputName: 'Email',
-            inputDica: 'Digite seu e-mail...',
-            controller: _emailController,
-          ),
-          WidgetInput(
-            inputName: 'Telefone',
-            inputDica: 'Digite seu telefone...',
-            controller: _telefoneController,
-          ),
-          WidgetInput(
-            inputName: 'Endereço',
-            inputDica: 'Digite seu endereço...',
-            controller: _enderecoController,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 340,
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Column(
-                          children: [
-                            Text('Gênero:'),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                CheckboxExample(
-                                  label: 'Masculino',
-                                  index: 0,
-                                  isSelected: _selectedGenderIndex == 0,
-                                  onChanged: _onGenderChanged,
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                CheckboxExample(
-                                  label: 'Feminino  ',
-                                  index: 1,
-                                  isSelected: _selectedGenderIndex == 1,
-                                  onChanged: _onGenderChanged,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            TextButton(
-                              style: TextButton.styleFrom(
-                                backgroundColor: Colors.grey,
-                                foregroundColor: Colors.white,
-                                padding: const EdgeInsets.all(15),
-                                textStyle: const TextStyle(fontSize: 18),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            WidgetInput(
+              inputName: 'Nome',
+              inputDica: 'Digite seu nome...',
+              controller: _nomeController,
+            ),
+            WidgetInput(
+              inputName: 'Email',
+              inputDica: 'Digite seu e-mail...',
+              controller: _emailController,
+            ),
+            WidgetInput(
+              inputName: 'Telefone',
+              inputDica: 'Digite seu telefone...',
+              controller: _telefoneController,
+            ),
+            WidgetInput(
+              inputName: 'Endereço',
+              inputDica: 'Digite seu endereço...',
+              controller: _enderecoController,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 340,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Column(
+                            children: [
+                              Text('Gênero:'),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  CheckboxExample(
+                                    label: 'Masculino',
+                                    index: 0,
+                                    isSelected: _selectedGenderIndex == 0,
+                                    onChanged: _onGenderChanged,
+                                  ),
+                                ],
                               ),
-                              onPressed: _onSave,
-                              child: const Text('Salvar'),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          ElevatedButton(
-            style: ButtonStyle(),
-            onPressed: () {
-              if (users.isNotEmpty) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => ShowUsersScreen(
-                      users: users,
-                    ),
+                              Row(
+                                children: [
+                                  CheckboxExample(
+                                    label: 'Feminino  ',
+                                    index: 1,
+                                    isSelected: _selectedGenderIndex == 1,
+                                    onChanged: _onGenderChanged,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  backgroundColor: Colors.grey,
+                                  foregroundColor: Colors.white,
+                                  padding: const EdgeInsets.all(15),
+                                  textStyle: const TextStyle(fontSize: 18),
+                                ),
+                                onPressed: _onSave,
+                                child: const Text('Salvar'),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                );
-              } else {
-                const snackBar = SnackBar(
-                  content: Text('Precisa cadastrar pelo menos 1 usuário!'),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              }
-              _clear();
-            },
-            child: Text('Mostrar'),
-          )
-        ],
+                ),
+              ],
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (users.isNotEmpty) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ShowUsersScreen(
+                        users: users,
+                      ),
+                    ),
+                  );
+                } else {
+                  const snackBar = SnackBar(
+                    content: Text('Precisa cadastrar pelo menos 1 usuário!'),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
+              },
+              child: const Text('Mostrar'),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -206,7 +220,7 @@ class CheckboxExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: deprecated_member_use
+    // ignore: deprecated_member_use, unused_element
     Color getColor(Set<MaterialState> states) {
       return Colors.white;
     }
@@ -216,10 +230,11 @@ class CheckboxExample extends StatelessWidget {
         Checkbox(
           checkColor: const Color.fromARGB(255, 9, 121, 20),
           // ignore: deprecated_member_use
-          fillColor: MaterialStateProperty.resolveWith(getColor),
+          fillColor: MaterialStateProperty.all(Colors.white),
           value: isSelected,
           onChanged: (bool? value) {
-            if (value == true) {
+            if (value == true || (value == false && isSelected)) {
+              // Permite selecionar ou desmarcar
               onChanged(index);
             }
           },
@@ -229,9 +244,3 @@ class CheckboxExample extends StatelessWidget {
     );
   }
 }
-
-
-// Validações
-// Campo genero ser reiniciado
-// estilo da outra página e deixar rolável
-// arrumar botão salvar e mostrar
