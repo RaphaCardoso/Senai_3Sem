@@ -1,0 +1,29 @@
+- NODE JS com Express
+
+Método POST = Criar
+
+Método GET = buscar
+
+Método PATCH / PUT = editar 
+
+Método DELETE = deletar
+
+**** Dependências
+
+- npm init
+- npm i nodemon
+- npm i Express
+- npm install sequelize mysql2 -> para se conectar com o banco de dados
+- cors
+
+
+- Utilizando PostMan
+
+
+*********************************
+
+-> Router 
+
+-> Config = para configurar o banco de dados sql
+
+- Web socket 
