@@ -114,8 +114,8 @@ INNER JOIN itens_pedido ON itens_pedido.produtos_id = produtos.id_produtos;
 -- Categorias -> Produtos -> Itens_pedido -> Pedidos
 
 SELECT
-	categorias.nome,
-    produtos.nome,
+	categorias.nome AS Categoria,
+    produtos.nome AS Produto,
     produtos.preco,
     itens_pedido.quantidade,
     pedidos.data_pedido
