@@ -1,0 +1,16 @@
+instalação React-Native
+
+- npx é para evitar algumas pastas e não baixar globalmente
+
+- create-expo-app + {nome do projeto}
+
+- --template blank para baixar uma versão menos atualizada
+
+- baixar ES7+ React/Redux/React-Native snippets
+
+===============================================
+
+- Para iniciar o projeto -> npx expo start
+- Lembrar que não vem com node_modules
+
+- rfc códigp para começar em uma estrutura básica

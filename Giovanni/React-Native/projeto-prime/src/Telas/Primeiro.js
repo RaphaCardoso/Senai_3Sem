@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 export default function Primeiro() {
@@ -33,13 +33,13 @@ const estilos = StyleSheet.create({
     topo: {
         width: "100%",
         height: 150,
-        backgroundColor: "blue",
+        backgroundColor: "indigo",
     },
     tituloTopo: {
         width: "100%",
         textAlign: "center",
         paddingTop: 80,
-        fontSize: 20,
+        fontSize: 26,
         color: "white",
         fontWeight: "bold",
     },
@@ -59,22 +59,22 @@ const estilos = StyleSheet.create({
         lineHeight: 26
     },
     preco: {
-        color: "green",
+        color: "indigo",
+        textAlign: "center",
         fontSize: 20,
         fontWeight: "bold",
-        marginLeft: 20,
-        marginTop: 8,
+        backgroundColor: "aliceblue",
     },
     box: {
-        width: 150,
-        height: 150,
+        width: 200,
+        height: 50,
         borderWidth: 2,
-        borderColor: "red",
+        borderColor: "purple",
         borderStyle: "solid",
-        padding: 5,
+        padding: 10,
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
-        marginLeft: "35%"
+        marginLeft: 20
     }
 });
