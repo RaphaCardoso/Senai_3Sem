@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
 
-const Product = sequelize.define('client', {
+const Client = sequelize.define('client', {
 
     nome: {
         type: DataTypes.STRING,
@@ -22,4 +22,4 @@ const Product = sequelize.define('client', {
 
 });
 
-module.exports = Product;
+module.exports = Client;
