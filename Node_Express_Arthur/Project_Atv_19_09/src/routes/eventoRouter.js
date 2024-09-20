@@ -10,13 +10,16 @@ router.post('', /*validate evento*/(req, res) => {
 
 router.get('', (req, res) => {
     eventoController.getAll(req, res);
-})
+});
 
 router.get('/:id', (req, res) => {
-    eventoController.getOne(req,res);
-})
+    eventoController.getOne(req, res);
+});
 
-router.put
-router.delete
+router.put('/:id', (req, res) => {
+    eventoController.update(req, res);
+});
+
+// router.delete
 
 module.exports = router;

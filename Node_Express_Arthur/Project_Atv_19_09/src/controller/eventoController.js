@@ -74,6 +74,37 @@ const eventoController = {
         }
 
     },
+
+    update: async (req, res) => {
+        try {
+
+            const { id } = req.params;
+
+            const { nome, data, localizacao } = req.body;
+
+            const eventoValid = await Evento.findByPk(id);
+
+            if (eventoValid) {
+
+                const evento = await Evento.update({ nome, data, localizacao }, { id });
+
+                res.status(200).json({
+                    msg: "Atualização feita com sucesso!",
+                    evento: evento
+                })
+            }
+
+            res.status(404).json({
+                msg: "Evento indisponível! Acione o suporte."
+            })
+
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({
+                msg: 'Acione o suporte!'
+            })
+        }
+    }
 }
 
 module.exports = eventoController;
