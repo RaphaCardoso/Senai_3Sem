@@ -20,6 +20,8 @@ router.put('/:id', (req, res) => {
     eventoController.update(req, res);
 });
 
-// router.delete
+router.delete('/:id', (req, res) => {
+    eventoController.delete(req, res);
+});
 
 module.exports = router;

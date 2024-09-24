@@ -7,9 +7,7 @@ export default function Contadores() {
     const [msg, setMsg] = useState(' ');
 
     useEffect(() => {
-
         setMsg('O valor do count foi atualizado ' + count + ' vezes')
-
     }, [count]);
 
     return (

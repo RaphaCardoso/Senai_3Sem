@@ -104,6 +104,39 @@ const eventoController = {
                 msg: 'Acione o suporte!'
             })
         }
+    },
+
+    delete: async (req, res) => {
+
+        try {
+
+            const { id } = req.params;
+
+            const eventoValid = await Evento.findByPk(id);
+
+            if (!eventoValid) {
+
+                res.status(404).json({
+                    msg: "Evento indisponível! Acione o suporte."
+                });
+
+            }
+
+            eventoValid.destroy()
+
+
+            res.status(200).json({
+                msg: "Evento deletado com sucesso!",
+                evento: eventoValid
+            });
+
+
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({
+                msg: 'Acione o suporte!'
+            })
+        }
     }
 }
 
