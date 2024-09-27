@@ -2,6 +2,9 @@ const { where } = require('sequelize');
 
 const Participante = require('../models/Participante');
 
+const Evento = require('../models/Evento');
+
+
 const participanteController = {
 
     create: async (req, res) => {
@@ -86,19 +89,20 @@ const participanteController = {
 
             const participanteValid = await Participante.findByPk(id);
 
-            if (participanteValid) {
+            if (!participanteValid) {
 
-                const participante = await Participante.update({ nome, email, eventoId }, { id });
-
-                res.status(200).json({
-                    msg: 'Participante atualizado com sucesso!',
-                    participante: participante
+                res.status(404).json({
+                    msg: 'Participante não encontrado! Acione o suporte.'
                 })
             }
 
-            res.status(404).json({
-                msg: 'Participante não encontrado! Acione o suporte.'
+            const participante = await Participante.update({ nome, email, eventoId }, { id });
+
+            res.status(200).json({
+                msg: 'Participante atualizado com sucesso!',
+                participante: participante
             })
+
 
         } catch (err) {
             console.error(err);
@@ -136,6 +140,26 @@ const participanteController = {
             })
         }
 
+    },
+
+    getByEvent: async (req, res) => {
+        try {
+
+            const idEvento = req.params;
+
+            const participantes = await Participante.findAll({ where: { eventoId: idEvento } });
+
+            res.status(200).json({
+                participantes: participantes
+            })
+
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({
+                msg: 'Acione o suporte!'
+            })
+
+        }
     }
 
 };

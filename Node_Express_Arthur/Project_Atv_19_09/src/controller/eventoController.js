@@ -2,6 +2,8 @@ const { where } = require('sequelize');
 
 const Evento = require('../models/Evento');
 
+const Participante = require('../models/Participante');
+
 const eventoController = {
 
     create: async (req, res) => {
@@ -136,6 +138,26 @@ const eventoController = {
             res.status(500).json({
                 msg: 'Acione o suporte!'
             })
+        }
+    },
+
+    getByParticipante: async (req, res) => {
+        try {
+
+            const { id } = req.params;
+
+            const participantes = await Participante.findAll({ where: { eventoId: id } });
+
+            res.status(200).json({
+                participantes: participantes
+            });
+
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({
+                msg: 'Acione o suporte!'
+            })
+
         }
     }
 }
