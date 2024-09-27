@@ -88,15 +88,15 @@ const eventoController = {
 
             if (eventoValid) {
 
-                const evento = await Evento.update({ nome, data, localizacao }, { id });
+                eventoValid.update({ nome, data, localizacao });
 
-                res.status(200).json({
+                return res.status(200).json({
                     msg: "Atualização feita com sucesso!",
-                    evento: evento
+                    eventoValid
                 })
             }
 
-            res.status(404).json({
+            return res.status(404).json({
                 msg: "Evento indisponível! Acione o suporte."
             })
 

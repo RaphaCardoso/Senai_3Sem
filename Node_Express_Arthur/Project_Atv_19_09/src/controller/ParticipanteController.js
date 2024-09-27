@@ -90,17 +90,16 @@ const participanteController = {
             const participanteValid = await Participante.findByPk(id);
 
             if (!participanteValid) {
-
                 res.status(404).json({
                     msg: 'Participante não encontrado! Acione o suporte.'
                 })
             }
 
-            const participante = await Participante.update({ nome, email, eventoId }, { id });
+            participanteValid.update({ nome, email, eventoId });
 
             res.status(200).json({
                 msg: 'Participante atualizado com sucesso!',
-                participante: participante
+                participanteValid
             })
 
 
@@ -149,9 +148,9 @@ const participanteController = {
 
             const participantes = await Participante.findAll({ where: { eventoId: idEvento } });
 
-            res.status(200).json({
-                participantes: participantes
-            })
+            return res.status(200).json({
+                participantes
+            });
 
         } catch (err) {
             console.error(err);
