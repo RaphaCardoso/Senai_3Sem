@@ -1,0 +1,36 @@
+{
+    "contatos": [
+        {
+            "id": "1",
+            "nome": "joão silva",
+            "telefone": "654894694"
+        },
+        {
+            "id": "2",
+            "nome": "Rapha",
+            "telefone": "6879494"
+        }
+    ],
+    "faq": [
+        {
+            "id": 1,
+            "pergunta": "o que é JSON server?",
+            "resposta": "JSON Server é uma ferramenta que permite..."
+        },
+        {
+            "id": 2,
+            "pergunta": "Corinthians melhor do mundo",
+            "resposta": "Sim, com certeza!"
+        },
+        {
+            "id": 3,
+            "pergunta": "Trikas fregues?",
+            "resposta": "Sim, com certeza!"
+        },
+        {
+            "id": 4,
+            "pergunta": "qual time é porco?",
+            "resposta": "parmeira"
+        }
+    ]
+}
