@@ -1,15 +1,21 @@
 const { Router } = require("express");
 
+const userController = require('../controller/userController');
+
+const { validateUser, validateUserId } = require('../middlewares/validateUser');
+
+const authenticateToken = require('../middlewares/validateToken');
+
 const router = Router();
 
-router.post('/',);
+router.post('/', validateUser, userController.create);
 
-router.get('/',);
+router.get('/:id', userController.getOne);
 
-router.get('/:id',);
+router.put('/:id', validateUser, validateUserId, userController.update);
 
-router.put('/:id',);
+router.get('/', userController.getAll);
 
-router.delete('/:id',);   
+router.delete('/:id', validateUserId, userController.delete);
 
 module.exports = router;
